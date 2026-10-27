@@ -17,7 +17,7 @@ The comma `,` and the newline are interchangeable in Scon.
 
 An object begins with a curly brace `{` and ends with a curly brace `}`.
 
-A newline is allowed after `{` and there can be a comma or newline before `}` (but that increases the size).
+A newline is allowed after `{` and there can be a comma or newline and spaces before `}` (but that increases the size).
 
 ### Keys
 
@@ -27,7 +27,7 @@ The keys of an object are written without quotes. A key name must not contain sp
 somekey
 ```
 
-A key name with spaces or significant characters can be written inside single quotes `'`. Escapes must be rendered to UTF-8: `\` represents a backslash and does not introduce an escaped character. A single quote in the key must be doubled `''`.
+A key name with spaces or significant characters can be written inside single quotes `'`. Escapes must be rendered to UTF-8; `\` represents a backslash and does not introduce an escaped character. A single quote in the key must be doubled `''`.
 
 Spaces are allowed before the key (but that increases the size).
 
@@ -64,7 +64,7 @@ A simple string begins with a single space. It should not contain spaces, commas
 
 #### Long string
 
-A long string begins and ends with a double quote `"`. Escapes must be rendered to UTF-8: `\` represents a backslash and does not introduce an escaped character. A double quote in the text must be doubled `""`.
+A long string begins and ends with a double quote `"`. Escapes must be rendered to UTF-8; `\` represents a backslash and does not introduce an escaped character. A double quote in the text must be doubled `""`.
 
 ```
 "Text with spaces, commas and special characters such as ""\""."
@@ -237,8 +237,6 @@ It is derived from this sample JSON document:
 ]
 ```
 
-Compare to the JSON minified version:
+Compare with the JSON minified version:
 
-```json
-[{"userId":1,"username":"johndoe","email":"johndoe@example.com","passwordHash":"abc123hashedpassword","profile":{"firstName":"John","lastName":"Doe","birthDate":"1990-01-01","gender":"male","avatarUrl":"https://example.com/avatars/johndoe.jpg","bio":"Software developer with a passion for open-source projects."},"preferences":{"language":"en","theme":"dark","notifications":{"email":true,"sms":false,"push":true},"privacy":{"showOnlineStatus":false,"profileVisibility":"friends"}},"accountStatus":{"isActive":true,"lastLogin":"2025-01-10T12:45:00Z","createdAt":"2022-05-15T08:30:00Z"},"activityLogs":[{"timestamp":"2025-01-09T14:20:00Z","activity":"Logged in from IP 192.168.1.10"},{"timestamp":"2025-01-08T10:05:00Z","activity":"Updated profile picture"}]},{"userId":2,"username":"janedoe","email":"janedoe@example.com","passwordHash":"xyz987hashedpassword","profile":{"firstName":"Jane","lastName":"Doe","birthDate":"1992-04-12","gender":"female","avatarUrl":"https://example.com/avatars/janedoe.jpg","bio":"Digital marketer and blogger."},"preferences":{"language":"fr","theme":"light","notifications":{"email":false,"sms":true,"push":true},"privacy":{"showOnlineStatus":true,"profileVisibility":"public"}},"accountStatus":{"isActive":true,"lastLogin":"2025-01-10T09:15:00Z","createdAt":"2023-03-20T11:00:00Z"},"activityLogs":[{"timestamp":"2025-01-09T18:30:00Z","activity":"Commented on a post"},{"timestamp":"2025-01-08T16:45:00Z","activity":"Liked a post"}]}]
-```
+> _`[{"userId":1,"username":"johndoe","email":"johndoe@example.com","passwordHash":"abc123hashedpassword","profile":{"firstName":"John","lastName":"Doe","birthDate":"1990-01-01","gender":"male","avatarUrl":"https://example.com/avatars/johndoe.jpg","bio":"Software developer with a passion for open-source projects."},"preferences":{"language":"en","theme":"dark","notifications":{"email":true,"sms":false,"push":true},"privacy":{"showOnlineStatus":false,"profileVisibility":"friends"}},"accountStatus":{"isActive":true,"lastLogin":"2025-01-10T12:45:00Z","createdAt":"2022-05-15T08:30:00Z"},"activityLogs":[{"timestamp":"2025-01-09T14:20:00Z","activity":"Logged in from IP 192.168.1.10"},{"timestamp":"2025-01-08T10:05:00Z","activity":"Updated profile picture"}]},{"userId":2,"username":"janedoe","email":"janedoe@example.com","passwordHash":"xyz987hashedpassword","profile":{"firstName":"Jane","lastName":"Doe","birthDate":"1992-04-12","gender":"female","avatarUrl":"https://example.com/avatars/janedoe.jpg","bio":"Digital marketer and blogger."},"preferences":{"language":"fr","theme":"light","notifications":{"email":false,"sms":true,"push":true},"privacy":{"showOnlineStatus":true,"profileVisibility":"public"}},"accountStatus":{"isActive":true,"lastLogin":"2025-01-10T09:15:00Z","createdAt":"2023-03-20T11:00:00Z"},"activityLogs":[{"timestamp":"2025-01-09T18:30:00Z","activity":"Commented on a post"},{"timestamp":"2025-01-08T16:45:00Z","activity":"Liked a post"}]}]`_
