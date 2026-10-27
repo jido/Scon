@@ -33,7 +33,7 @@ Spaces are allowed before the key (but they increase the document size).
 
 #### Shorthand
 
-A key can be associated with a shorthand name which must not contain spaces or other significant characters. To associate a key with a shorthand, write the short name followed with a colon `:` then the long name:
+A key can be associated with a shorthand name which must not contain spaces or other significant characters. To associate a key with a shorthand, write the short name followed by the long name separated with a colon `:`:
 
 ```
 ab:'some key'
@@ -64,7 +64,7 @@ A simple string begins with a single space. It should not contain spaces, commas
 
 #### Long string
 
-A long string begins and ends with a double quote `"`. Escapes must be rendered to UTF-8: `\` represents a backslash and does not introduce an escaped character. A double quote in the key must be doubled `""`.
+A long string begins and ends with a double quote `"`. Escapes must be rendered to UTF-8: `\` represents a backslash and does not introduce an escaped character. A double quote in the text must be doubled `""`.
 
 ```
 "Text with spaces, commas and special characters such as ""\""."
