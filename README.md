@@ -101,22 +101,20 @@ Null is represented with a forward slash `/`
 ## An example
 
 ```clojure
-[{id:userId+1, Un:username johndoe, Em:email johndoe@example.com, hash:passwordHash"abc123hashedpassword"
- pro:profile{Fn:firstName John, Ln:lastName Doe, bd:birthDate^1990-01-01, ge:gender male
-  av:avatarUrl https://example.com/avatars/johndoe.jpg, bio"Software developer with a passion for open-source projects."}
+[{id:userId+1, Un:username"johndoe", Em:email"johndoe@example.com", hash:passwordHash"abc123hashedpassword"
+ pro:profile{Fn:firstName"John", Ln:lastName"Doe", bd:birthDate^1990-01-01, ge:gender male
+  ava:avatarUrl https://example.com/avatars/johndoe.jpg, bio"Software developer with a passion for open-source projects."}
  pref:preferences{lang:language en, th:theme dark, notif:notifications{Em*,sms~,push*}
   priv:privacy{onl:showOnlineStatus~, vis:profileVisibility friends}}
- stat:accountStatus{is:isActive*, ll:lastLogin^2025-01-10T12:45:00Z, cr:createdAt^2022-05-15T08:30:00Z}
+ stat:accountStatus{activ:isActive*, ll:lastLogin^2025-01-10T12:45:00Z, cr:createdAt^2022-05-15T08:30:00Z}
  log:activityLogs[{ts:timestamp^2025-01-09T14:20:00Z, ac:activity"Logged in from IP 192.168.1.10"}
 {ts^2025-01-08T10:05:00Z,ac"Updated profile picture"}]}
-{id+2,Un janedoe,Em janedoe@example.com,hash"xyz987hashedpassword",
- pro{Fn Jane,Ln Doe,bd^1992-04-12,ge female
-  av https://example.com/avatars/janedoe.jpg, bio"Digital marketer and blogger."}
- pref{lang fr,th light,notif{Em~,sms*,push*}
-  priv{onl*,vis public}}
- stat{is*,ll^2025-01-10T09:15:00Z,cr^2023-03-20T11:00:00Z}
- log[{ts^2025-01-09T18:30:00Z,ac"Commented on a post"}
-{ts^2025-01-08T16:45:00Z,ac"Liked a post"}]}]
+{id+2,Un"janedoe",Em"janedoe@example.com",hash"xyz987hashedpassword"
+ pro{Fn"Jane",Ln"Doe",bd^1992-04-12,ge female
+  ava https://example.com/avatars/janedoe.jpg, bio"Digital marketer and blogger."}
+ pref{lang fr,th light,notif{Em~,sms*,push*},priv{onl*,vis public}}
+ stat{activ*,ll^2025-01-10T09:15:00Z,cr^2023-03-20T11:00:00Z}
+ log[{ts^2025-01-09T18:30:00Z,ac"Commented on a post"},{ts^2025-01-08T16:45:00Z,ac"Liked a post"}]}]
 ```
 
 It is derived from this sample JSON document:
