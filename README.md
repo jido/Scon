@@ -106,7 +106,7 @@ Null is represented with a forward slash `/`
  Un:username"johndoe"
  Em:email"johndoe@example.com"
  hash:passwordHash"abc123hashedpassword"
- pro:profile{
+ pr:profile{
   Fn:firstName"John"
   Ln:lastName"Doe"
   bd:birthDate^1990-01-01
@@ -137,12 +137,13 @@ Null is represented with a forward slash `/`
  }]
 }
 {id+2,Un"janedoe",Em"janedoe@example.com",hash"xyz987hashedpassword"
- pro{Fn"Jane",Ln"Doe",bd^1992-04-12,ge female,ava https://example.com/avatars/janedoe.jpg
-  bio"Digital marketer and blogger."}
- pref{lang fr,th light,notif{Em~,sms*,push*},priv{onl*,vis public}}
- stat{activ*,ll^2025-01-10T09:15:00Z,cr^2023-03-20T11:00:00Z}
- log[{ts^2025-01-09T18:30:00Z,ac"Commented on a post"},{ts^2025-01-08T16:45:00Z,ac"Liked a post"}]
-}]
+pr{Fn"Jane",Ln"Doe",bd^1992-04-12,ge female,ava https://example.com/avatars/janedoe.jpg
+bio"Digital marketer and blogger."}
+pref{lang fr,th light,notif{Em~,sms*,push*},priv{onl*,vis public}}
+stat{activ*,ll^2025-01-10T09:15:00Z,cr^2023-03-20T11:00:00Z}
+log[{ts^2025-01-09T18:30:00Z,ac"Commented on a post"}
+{ts^2025-01-08T16:45:00Z,ac"Liked a post"}]}
+]
 ```
 
 It is derived from this sample JSON document:
