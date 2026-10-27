@@ -17,7 +17,7 @@ The comma `,` and the newline are interchangeable in Scon.
 
 An object begins with a curly brace `{` and ends with a curly brace `}`.
 
-Since a newline is equivalent to a comma, newlines are not allowed after `{` or before `}`.
+A newline is allowed after `{` and there can be a comma or newline before `}` (but that increases the size).
 
 ### Keys
 
@@ -29,7 +29,7 @@ somekey
 
 A key name with spaces or significant characters can be written inside single quotes `'`. Escapes must be rendered to UTF-8: `\` represents a backslash and does not introduce an escaped character. A single quote in the key must be doubled `''`.
 
-Spaces are allowed before the key (but they increase the document size).
+Spaces are allowed before the key (but that increases the size).
 
 #### Shorthand
 
@@ -45,7 +45,7 @@ From this point on, the long name can be replaced with the shorthand when writin
 
 A list begins with a square bracket `[` and ends with a square bracket `]`.
 
-Since a newline is equivalent to a comma, newlines are not allowed after `[` or before `]`.
+A newline is allowed after `[` and there can be a comma or newline before `]` (but that increases the size).
 
 > [!NOTE]
 > List items don't start with a key, which means spaces are not allowed before an item (a single space has a special meaning).
@@ -101,20 +101,48 @@ Null is represented with a forward slash `/`
 ## An example
 
 ```clojure
-[{id:userId+1, Un:username"johndoe", Em:email"johndoe@example.com", hash:passwordHash"abc123hashedpassword"
- pro:profile{Fn:firstName"John", Ln:lastName"Doe", bd:birthDate^1990-01-01, ge:gender male
-  ava:avatarUrl https://example.com/avatars/johndoe.jpg, bio"Software developer with a passion for open-source projects."}
- pref:preferences{lang:language en, th:theme dark, notif:notifications{Em*,sms~,push*}
-  priv:privacy{onl:showOnlineStatus~, vis:profileVisibility friends}}
- stat:accountStatus{activ:isActive*, ll:lastLogin^2025-01-10T12:45:00Z, cr:createdAt^2022-05-15T08:30:00Z}
- log:activityLogs[{ts:timestamp^2025-01-09T14:20:00Z, ac:activity"Logged in from IP 192.168.1.10"}
-{ts^2025-01-08T10:05:00Z,ac"Updated profile picture"}]}
+[{
+ id:userId+1
+ Un:username"johndoe"
+ Em:email"johndoe@example.com"
+ hash:passwordHash"abc123hashedpassword"
+ pro:profile{
+  Fn:firstName"John"
+  Ln:lastName"Doe"
+  bd:birthDate^1990-01-01
+  ge:gender male
+  ava:avatarUrl https://example.com/avatars/johndoe.jpg
+  bio"Software developer with a passion for open-source projects."
+ }
+ pref:preferences{
+  lang:language en
+  th:theme dark
+  notif:notifications{Em*,sms~,push*}
+  priv:privacy{
+   onl:showOnlineStatus~
+   vis:profileVisibility friends
+  }
+ }
+ stat:accountStatus{
+  activ:isActive*
+  ll:lastLogin^2025-01-10T12:45:00Z
+  cr:createdAt^2022-05-15T08:30:00Z
+ }
+ log:activityLogs[{
+  ts:timestamp^2025-01-09T14:20:00Z
+  ac:activity"Logged in from IP 192.168.1.10"
+ },{
+  ts^2025-01-08T10:05:00Z
+  ac"Updated profile picture"
+ }]
+}
 {id+2,Un"janedoe",Em"janedoe@example.com",hash"xyz987hashedpassword"
- pro{Fn"Jane",Ln"Doe",bd^1992-04-12,ge female
-  ava https://example.com/avatars/janedoe.jpg, bio"Digital marketer and blogger."}
+ pro{Fn"Jane",Ln"Doe",bd^1992-04-12,ge female,ava https://example.com/avatars/janedoe.jpg
+  bio"Digital marketer and blogger."}
  pref{lang fr,th light,notif{Em~,sms*,push*},priv{onl*,vis public}}
  stat{activ*,ll^2025-01-10T09:15:00Z,cr^2023-03-20T11:00:00Z}
- log[{ts^2025-01-09T18:30:00Z,ac"Commented on a post"},{ts^2025-01-08T16:45:00Z,ac"Liked a post"}]}]
+ log[{ts^2025-01-09T18:30:00Z,ac"Commented on a post"},{ts^2025-01-08T16:45:00Z,ac"Liked a post"}]
+}]
 ```
 
 It is derived from this sample JSON document:
