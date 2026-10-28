@@ -52,7 +52,7 @@ A newline is allowed after `[` and there can be a comma or newline before `]` (b
 
 ### Text
 
-There are three notations for text data in Scon.
+There are four notations for text data in Scon.
 
 #### Simple string
 
@@ -78,6 +78,16 @@ A date string begins with a hat `^` and is written in ISO-8601 format.
 
 ```
 ^2026-10-26
+```
+
+#### Internet address
+
+An internet address (URI) begins with an angular bracket `<` and ends with `%>`.
+
+Inside the URI the percentage sign `%` must be URI-escaped using `%25`.
+
+```
+<http://example.com%>
 ```
 
 ### Number
@@ -117,7 +127,7 @@ Null is represented with a forward slash `/`.
   Ln:lastName"Doe"
   bd:birthDate^1990-01-01
   ge:gender male
-  ava:avatarUrl https://example.com/avatars/johndoe.jpg
+  ava:avatarUrl<https://example.com/avatars/johndoe.jpg%>
   bio"Software developer with a passion for open-source projects."
  }
  pref:preferences{
@@ -143,7 +153,7 @@ Null is represented with a forward slash `/`.
  }]
 }
 {id 2,Un"janedoe",Em"janedoe@example.com",hash"xyz987hashedpassword"
-pf{Fn"Jane",Ln"Doe",bd^1992-04-12,ge female,ava https://example.com/avatars/janedoe.jpg
+pf{Fn"Jane",Ln"Doe",bd^1992-04-12,ge female,ava<https://example.com/avatars/janedoe.jpg%>
 bio"Digital marketer and blogger."}
 pref{lang fr,th light,notif{Em~,sms*,push*},priv{onl*,vis public}}
 stat{activ*,ll^2025-01-10T09:15:00Z,cr^2023-03-20T11:00:00Z}
@@ -247,4 +257,4 @@ Compare with the JSON minified version:
 
 > _`[{"userId":1,"username":"johndoe","email":"johndoe@example.com","passwordHash":"abc123hashedpassword","profile":{"firstName":"John","lastName":"Doe","birthDate":"1990-01-01","gender":"male","avatarUrl":"https://example.com/avatars/johndoe.jpg","bio":"Software developer with a passion for open-source projects."},"preferences":{"language":"en","theme":"dark","notifications":{"email":true,"sms":false,"push":true},"privacy":{"showOnlineStatus":false,"profileVisibility":"friends"}},"accountStatus":{"isActive":true,"lastLogin":"2025-01-10T12:45:00Z","createdAt":"2022-05-15T08:30:00Z"},"activityLogs":[{"timestamp":"2025-01-09T14:20:00Z","activity":"Logged in from IP 192.168.1.10"},{"timestamp":"2025-01-08T10:05:00Z","activity":"Updated profile picture"}]},{"userId":2,"username":"janedoe","email":"janedoe@example.com","passwordHash":"xyz987hashedpassword","profile":{"firstName":"Jane","lastName":"Doe","birthDate":"1992-04-12","gender":"female","avatarUrl":"https://example.com/avatars/janedoe.jpg","bio":"Digital marketer and blogger."},"preferences":{"language":"fr","theme":"light","notifications":{"email":false,"sms":true,"push":true},"privacy":{"showOnlineStatus":true,"profileVisibility":"public"}},"accountStatus":{"isActive":true,"lastLogin":"2025-01-10T09:15:00Z","createdAt":"2023-03-20T11:00:00Z"},"activityLogs":[{"timestamp":"2025-01-09T18:30:00Z","activity":"Commented on a post"},{"timestamp":"2025-01-08T16:45:00Z","activity":"Liked a post"}]}]`_
 
-In that example, the Scon file is more than 260 characters less. Shorthand is particularly effective for repeating keys.
+In that example, the Scon file is more than 250 characters less. Shorthand is particularly effective for repeating keys.
