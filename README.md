@@ -56,7 +56,7 @@ There are three notations for text data in Scon.
 
 #### Simple string
 
-A simple string begins with a single space. It should not contain spaces, commas, `]` or `}`.
+A simple string begins with a single space. It must not begin with plus `+`, minus `-`, a dot `.` or a digit. It must not contain spaces, commas, `]` or `}`.
 
 ```
  simple-string
@@ -82,19 +82,25 @@ A date string begins with a hat `^` and is written in ISO-8601 format.
 
 ### Number
 
-A positive number begins with plus `+` and a negative number begins with minus `-`. Other than that the notation is the same as JSON.
+A number is prefixed with a single space. The notation is the same as JSON.
 
 ```
-+1.347e9
+ 1.347e9
 ```
 
-### Boolean
+Infinity is written `+#` (positive infinity) or `-#` (negative infinity).
+
+### Not a Number (NaN)
+
+NaN is represented with a question mark `?`.
+
+### Boolean values
 
 True is represented with an asterisk `*` and false with a tilde `~`.
 
 ### Null
 
-Null is represented with a forward slash `/`
+Null is represented with a forward slash `/`.
 
 ---
 
@@ -102,11 +108,11 @@ Null is represented with a forward slash `/`
 
 ```clojure
 [{
- id:userId+1
+ id:userId 1
  Un:username"johndoe"
  Em:email"johndoe@example.com"
  hash:passwordHash"abc123hashedpassword"
- pr:profile{
+ pf:profile{
   Fn:firstName"John"
   Ln:lastName"Doe"
   bd:birthDate^1990-01-01
@@ -130,19 +136,19 @@ Null is represented with a forward slash `/`
  }
  log:activityLogs[{
   ts:timestamp^2025-01-09T14:20:00Z
-  ac:activity"Logged in from IP 192.168.1.10"
+  a:activity"Logged in from IP 192.168.1.10"
  },{
   ts^2025-01-08T10:05:00Z
-  ac"Updated profile picture"
+  a"Updated profile picture"
  }]
 }
-{id+2,Un"janedoe",Em"janedoe@example.com",hash"xyz987hashedpassword"
-pr{Fn"Jane",Ln"Doe",bd^1992-04-12,ge female,ava https://example.com/avatars/janedoe.jpg
+{id 2,Un"janedoe",Em"janedoe@example.com",hash"xyz987hashedpassword"
+pf{Fn"Jane",Ln"Doe",bd^1992-04-12,ge female,ava https://example.com/avatars/janedoe.jpg
 bio"Digital marketer and blogger."}
 pref{lang fr,th light,notif{Em~,sms*,push*},priv{onl*,vis public}}
 stat{activ*,ll^2025-01-10T09:15:00Z,cr^2023-03-20T11:00:00Z}
-log[{ts^2025-01-09T18:30:00Z,ac"Commented on a post"}
-{ts^2025-01-08T16:45:00Z,ac"Liked a post"}]}
+log[{ts^2025-01-09T18:30:00Z,a"Commented on a post"}
+{ts^2025-01-08T16:45:00Z,a"Liked a post"}]}
 ]
 ```
 
@@ -240,3 +246,5 @@ It is derived from this sample JSON document:
 Compare with the JSON minified version:
 
 > _`[{"userId":1,"username":"johndoe","email":"johndoe@example.com","passwordHash":"abc123hashedpassword","profile":{"firstName":"John","lastName":"Doe","birthDate":"1990-01-01","gender":"male","avatarUrl":"https://example.com/avatars/johndoe.jpg","bio":"Software developer with a passion for open-source projects."},"preferences":{"language":"en","theme":"dark","notifications":{"email":true,"sms":false,"push":true},"privacy":{"showOnlineStatus":false,"profileVisibility":"friends"}},"accountStatus":{"isActive":true,"lastLogin":"2025-01-10T12:45:00Z","createdAt":"2022-05-15T08:30:00Z"},"activityLogs":[{"timestamp":"2025-01-09T14:20:00Z","activity":"Logged in from IP 192.168.1.10"},{"timestamp":"2025-01-08T10:05:00Z","activity":"Updated profile picture"}]},{"userId":2,"username":"janedoe","email":"janedoe@example.com","passwordHash":"xyz987hashedpassword","profile":{"firstName":"Jane","lastName":"Doe","birthDate":"1992-04-12","gender":"female","avatarUrl":"https://example.com/avatars/janedoe.jpg","bio":"Digital marketer and blogger."},"preferences":{"language":"fr","theme":"light","notifications":{"email":false,"sms":true,"push":true},"privacy":{"showOnlineStatus":true,"profileVisibility":"public"}},"accountStatus":{"isActive":true,"lastLogin":"2025-01-10T09:15:00Z","createdAt":"2023-03-20T11:00:00Z"},"activityLogs":[{"timestamp":"2025-01-09T18:30:00Z","activity":"Commented on a post"},{"timestamp":"2025-01-08T16:45:00Z","activity":"Liked a post"}]}]`_
+
+In that example, the Scon file is more than 260 characters less. Shorthand is particularly effective for repeating keys.
