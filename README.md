@@ -84,11 +84,12 @@ A date string begins with a hat `^` and is written in ISO-8601 format.
 
 An internet address (URI) begins with an angular bracket `<` and ends with `%>`.
 
-Inside the URI the percentage sign `%` should be URI-escaped using `%25`. That ensures the URI text does not contain the end marker `%>`. Other URI escapes are allowed (but not required).
-
 ```
 <http://example.com%>
 ```
+
+> [!NOTE]
+> Inside the URI the percentage sign `%` should be URI-escaped using `%25`. That ensures the URI text does not contain the end marker `%>`. Other URI escapes are allowed (but not required).
 
 ### Number
 
