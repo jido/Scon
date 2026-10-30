@@ -45,10 +45,7 @@ From this point on, the long name can be replaced with the shorthand when writin
 
 A list begins with a square bracket `[` and ends with a square bracket `]`.
 
-A newline is allowed after `[` and there can be a comma or newline before `]` (but that increases the size).
-
-> [!NOTE]
-> List items don't start with a key, which means spaces are not allowed before an item (a single space has a special meaning).
+A newline is allowed after `[` and there can be a comma or newline and spaces before `]` (but that increases the size).
 
 ### Text
 
@@ -56,10 +53,10 @@ There are four notations for text data in Scon.
 
 #### Simple string
 
-A simple string begins with a single space. It must not begin with plus `+`, minus `-`, a dot `.` or a digit. It must not contain spaces, commas, `]` or `}`.
+A simple string begins with a backtick \` when it is alone, or with a single space after an object key. It must not begin with plus `+`, minus `-`, a dot `.` or a digit. It must not contain spaces, commas, `]` or `}`.
 
 ```
- simple-string
+`simple-string
 ```
 
 #### Long string
@@ -93,10 +90,10 @@ An internet address (URI) begins with an angular bracket `<` and ends with `%>`.
 
 ### Number
 
-A number is prefixed with a single space. The notation is the same as JSON.
+The number notation is the same as JSON. A number is separated from an object key with a single space.
 
 ```
- 1.347e9
+1.347e9
 ```
 
 Infinity is written `+#` (positive infinity) or `-#` (negative infinity).
@@ -149,8 +146,8 @@ Null is represented with a forward slash `/`.
   ts:timestamp^2025-01-09T14:20:00Z
   a:activity"Logged in from IP 192.168.1.10"
  },{
-  ts^2025-01-08T10:05:00Z
-  a"Updated profile picture"
+   ts^2025-01-08T10:05:00Z
+   a"Updated profile picture"
  }]
 }
 {id 2,Un"janedoe",Em"janedoe@example.com",hash"xyz987hashedpassword"
@@ -159,8 +156,8 @@ bio"Digital marketer and blogger."}
 pref{lang fr,th light,notif{Em~,sms*,push*},priv{onl*,vis public}}
 stat{activ*,ll^2025-01-10T09:15:00Z,cr^2023-03-20T11:00:00Z}
 log[{ts^2025-01-09T18:30:00Z,a"Commented on a post"}
-{ts^2025-01-08T16:45:00Z,a"Liked a post"}]}
-]
+ {ts^2025-01-08T16:45:00Z,a"Liked a post"}]
+}]
 ```
 
 It is derived from this sample JSON document:
