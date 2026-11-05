@@ -90,7 +90,12 @@ An internet address (URI) begins with an angular bracket `<` and ends with `%>`.
 
 ### Number
 
-The number notation is the same as JSON. A number is separated from an object key with a single space.
+The number notation is based on JSON with the following differences:
+* the optional sign can be plus `+` or minus `-`
+* trailing zeros are allowed up to the sixth decimal, for round-tripping purposes
+* infinity is supported
+
+A number is separated from an object key with a single space.
 
 ```
 1.347e9
@@ -256,3 +261,25 @@ Compare with the JSON minified version:
 > _`[{"userId":1,"username":"johndoe","email":"johndoe@example.com","passwordHash":"abc123hashedpassword","profile":{"firstName":"John","lastName":"Doe","birthDate":"1990-01-01","gender":"male","avatarUrl":"https://example.com/avatars/johndoe.jpg","bio":"Software developer with a passion for open-source projects."},"preferences":{"language":"en","theme":"dark","notifications":{"email":true,"sms":false,"push":true},"privacy":{"showOnlineStatus":false,"profileVisibility":"friends"}},"accountStatus":{"isActive":true,"lastLogin":"2025-01-10T12:45:00Z","createdAt":"2022-05-15T08:30:00Z"},"activityLogs":[{"timestamp":"2025-01-09T14:20:00Z","activity":"Logged in from IP 192.168.1.10"},{"timestamp":"2025-01-08T10:05:00Z","activity":"Updated profile picture"}]},{"userId":2,"username":"janedoe","email":"janedoe@example.com","passwordHash":"xyz987hashedpassword","profile":{"firstName":"Jane","lastName":"Doe","birthDate":"1992-04-12","gender":"female","avatarUrl":"https://example.com/avatars/janedoe.jpg","bio":"Digital marketer and blogger."},"preferences":{"language":"fr","theme":"light","notifications":{"email":false,"sms":true,"push":true},"privacy":{"showOnlineStatus":true,"profileVisibility":"public"}},"accountStatus":{"isActive":true,"lastLogin":"2025-01-10T09:15:00Z","createdAt":"2023-03-20T11:00:00Z"},"activityLogs":[{"timestamp":"2025-01-09T18:30:00Z","activity":"Commented on a post"},{"timestamp":"2025-01-08T16:45:00Z","activity":"Liked a post"}]}]`_
 
 In that example, the Scon file is more than 250 characters less. Shorthand is particularly effective for repeating keys.
+
+## Reading numbers
+
+Numbers found in a Scon document are not always suitable for representation in the reader's programming language.
+
+The Scon format defines _round-tripping rules_. A number that does not satisfy these rules must be rejected by the reader. The form of that rejection is not specified.
+
+Given a number written with _k_ digits after the decimal point (if there is any):
+
+1. only `+#` and `-#` are allowed to become infinite when written back
+2. if the number is an integer (_k = 0_), writing it back as an integer must match the input exactly
+3. if _k <= 6_, rounding the read number to _k_ digits using nearest even must match the input exactly
+4. if _k > 6_, rounding the input number to 6 digits using nearest even and rounding the read number in the same way must match exactly
+
+A number which must be read with a specific precision should have the required number of digits after the decimal point, even if these are zeros. The maximum reader precision in the Scon specification is six (rule 4).
+
+> [!NOTE]
+> A number written with a single digit before the decimal point, for example:
+>
+>     8.7654321e9
+>
+> can be read in single precision floating point (_float32_) as long as it is within range.
