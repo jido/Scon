@@ -277,6 +277,8 @@ Given a number written with _k_ digits after the decimal point (if there is any)
 
 A number which must be read with a specific precision should have the required number of digits after the decimal point, even if these are zeros. The maximum reader precision in the Scon specification is six (rule 4).
 
+A number with an exponent is written in canonical form `N.NNeXX` where the decimal point might change position (for example 12.345678e9 --> 1.2345678e10) but there is no loss of precision in the first six decimals of the original number. 
+
 > [!NOTE]
 > A number written with a single digit before the decimal point, for example:
 >
