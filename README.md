@@ -272,12 +272,18 @@ Given a number written with _k_ digits after the decimal point (if there is any)
 
 1. only `+#` and `-#` are allowed to become infinite when written back
 2. if the number is an integer (_k = 0_), writing it back as an integer must match the input exactly
-3. if _k <= 6_, rounding the read number to _k_ digits using nearest even must match the input exactly
+3. if _k <= 6_, rounding the read number to _k_ digits using nearest even must match the input number exactly
 4. if _k > 6_, rounding the input number to 6 digits using nearest even and rounding the read number in the same way must match exactly
 
 A number which must be read with a specific precision should have the required number of digits after the decimal point, even if these are zeros. The maximum reader precision in the Scon specification is six (rule 4).
 
-A number with an exponent is written in canonical form `N.NNeXX` where the decimal point might change position (for example 12.345678e9 --> 1.2345678e10) but there is no loss of precision in the first six decimals of the original number. 
+> [!NOTE]
+> An implementation can write a number with an exponent back in canonical form `N.NNeXX` where the decimal point might change position, for example:
+>
+>     12.345678e9 -> 1.2345678e10
+>
+> but there can be no loss of precision in the first six digits after the decimal point of the original number else that number must be rejected.
+> Note that a second roundtrip could degrade the precision if the canonical form has more than six decimals.
 
 > [!NOTE]
 > A number written with a single digit before the decimal point, for example:

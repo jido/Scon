@@ -28,7 +28,17 @@ fn main() -> Result<()> {
         Ok(v) => {
             // Print the data in Scon format
             println!("- Converted to Scon -");
-            println!("{}", to_string_pretty(&v).unwrap());
+            let _ = match to_string_pretty(&v) {
+                Ok(scon) => {
+                    println!("{}", scon);
+                    println!("Size: {}", scon.len()); 
+	            serde_scon::from_str::<serde_scon::Value>(&scon)
+                }
+                Err(e) => {
+                    println!("Failed to convert");
+                    Err(e)
+                }
+            };
         }
         Err(e) => {
             println!("JSON error: {:?}", e);
